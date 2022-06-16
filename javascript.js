@@ -1,6 +1,6 @@
 function addDivs(gridSize){
     const drawPanel = document.querySelector('.drawPanel');
-    
+
     let numberOfDivs = gridSize*gridSize;
     for (let i = 0; i < numberOfDivs; ++i){
         let drawSquare = document.createElement('div');
@@ -10,5 +10,16 @@ function addDivs(gridSize){
     }
 }
 
-let gridSize = prompt('What\'s the size of your grid?');
-addDivs(gridSize)
+function addHoveredClass(e){
+    this.classList.add('hovered')
+}
+
+function drawGrid(){
+    let gridSize = prompt('What\'s the size of your grid?');
+    addDivs(gridSize);
+
+    const drawSquares = document.querySelectorAll('.drawSquare');
+    drawSquares.forEach(square => square.addEventListener('mouseover', addHoveredClass))
+}
+
+drawGrid()
