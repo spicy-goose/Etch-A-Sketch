@@ -8,6 +8,7 @@ body {
     height: 100vh;
     margin: 0;
     padding: 0;
+    font-family: monospace;
 }
 
 .container{
@@ -49,6 +50,12 @@ body {
     height: 100px;
     justify-content: space-around;
     align-items: center;
+}
+
+
+.toggleLabel{
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .label1{
