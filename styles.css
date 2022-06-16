@@ -29,6 +29,8 @@ body {
     width: 300px;
     background-color: transparent;
     border: 2px black solid;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .drawSquare{

@@ -1,6 +1,4 @@
 function addDivs(gridSize){
-    const drawPanel = document.querySelector('.drawPanel');
-
     let numberOfDivs = gridSize*gridSize;
     for (let i = 0; i < numberOfDivs; ++i){
         let drawSquare = document.createElement('div');
@@ -22,4 +20,13 @@ function drawGrid(){
     drawSquares.forEach(square => square.addEventListener('mouseover', addHoveredClass))
 }
 
-drawGrid()
+function clearPad(){
+    const drawSquares = document.querySelectorAll('.drawSquare');
+    drawSquares.forEach(square => drawPanel.removeChild(square));
+    drawGrid()
+}
+
+const drawPanel = document.querySelector('.drawPanel');
+const clearButton = document.querySelector('.clearButton')
+clearButton.addEventListener('click', clearPad);
+drawGrid();
