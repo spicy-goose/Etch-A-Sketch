@@ -4,26 +4,30 @@ function addDivs(gridSize){
         let drawSquare = document.createElement('div');
         drawSquare.classList.add("drawSquare");
         drawSquare.style.width = `${100/gridSize}%`;
+        drawSquare.dataset.darken = 0;
         drawPanel.appendChild(drawSquare);
     }
 }
 
 function darkenSquares(e){
-    let bgCol = this.style.backgroundColor;
-    let alpha = parseFloat(bgCol.split(',')[3]); //using RGB alteration to darken squares because it does not alter div borders
-    if (alpha){
-        if (alpha >= 0.9){
-            alpha = 0.99; //cannot set to 1 as it will essesntially delete the alpha value, resetting the opacity to NaN
-        }else{
-            alpha += 0.1; //increment alpha in increments of 0.1 if it has not reached max value
-        }
-    }else{
-        alpha = 0.1; //if alpha is NaN, set it to 0.1
+
+    if (+this.dataset.darken < 1){
+        this.dataset.darken =  +this.dataset.darken + 0.1;  //this darken factor contributes to fading the drawing pad to black
     }
-    this.style.backgroundColor = `rgb(0, 0, 0, ${alpha})`;
+
+    let darkenVal = this.dataset.darken;
+
+    let color1 = randomColorGenerator(darkenVal); 
+    let color2 = randomColorGenerator(darkenVal);
+    let color3 = randomColorGenerator(darkenVal);
+
+    this.style.backgroundColor = `rgb(${color1}, ${color2}, ${color3})`;
 
 }
 
+function randomColorGenerator(darkenVal){
+    return Math.floor(Math.random()*256)-(255*darkenVal) //generates random number from 0 to 255. The higher the alpha, the more black is chosen
+}
 
 function drawGrid(){
     let gridSize = prompt('What\'s the size of your grid?');
