@@ -31,6 +31,10 @@ function randomColorGenerator(darkenVal){
 
 function drawGrid(){
     let gridSize = prompt('What\'s the size of your grid?');
+    if (isNaN(gridSize) || gridSize<1){
+        clearButton.textContent = 'Invalid grid size. Click to retry!'
+        return 
+    }
     addDivs(gridSize);
 
     const drawSquares = document.querySelectorAll('.drawSquare');
@@ -38,6 +42,7 @@ function drawGrid(){
 }
 
 function clearPad(){
+    clearButton.textContent = "clear drawing pad!"
     const drawSquares = document.querySelectorAll('.drawSquare');
     drawSquares.forEach(square => drawPanel.removeChild(square));
     drawGrid()
